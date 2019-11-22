@@ -1,0 +1,35 @@
+.footer{
+    --background: var(--footer-background-color);
+    --ion-text-color: var(--font-color-white);
+    text-align: center;
+}
+
+.header{
+    --background: var(--header-background-color);
+    --ion-text-color: var(--font-color-white);
+    text-align: center;
+}
+
+.side-menu-header{
+    --background: var(--side-menu-header-color);
+    --ion-text-color: var(--font-color-white);
+    font-weight: bold;
+    font-size: medium;
+
+}
+
+
+.m-l {
+    margin-left: 10px;
+}
+
+.m-r {
+    margin-right: 10px;
+}
+.m-r-menu {
+    margin-right: 4px;
+
+}
+.m-2{
+    margin: 2px;
+}

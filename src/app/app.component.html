@@ -1,0 +1,48 @@
+<ion-app>
+  <ion-header>
+      <ion-toolbar class="header" *ngIf='!authCheck'>
+        <ion-icon name="logo-javascript" slot="secondary" class="m-r-menu" size="large"></ion-icon>
+        <ion-title  size="small" center bold>A n g u l a r</ion-title>
+        <!-- <ion-icon name="logo-angular" slot="start" class="m-l" size="large"></ion-icon> -->
+      </ion-toolbar>
+      <ion-toolbar class="header" *ngIf='authCheck'>
+          <ion-buttons slot="start">
+            <ion-menu-button size='large'></ion-menu-button>
+          </ion-buttons>
+          <ion-icon name="logo-javascript" slot="secondary" class="m-r-menu" size="large"></ion-icon>
+          <ion-title  size="small" center bold>A n g u l a r</ion-title>
+
+        </ion-toolbar>
+  </ion-header>
+  
+  <ion-content >
+    <ion-router-outlet id="content1"></ion-router-outlet>
+  </ion-content>
+  
+  <ion-footer>
+      <ion-toolbar class="footer">
+        <ion-icon name="logo-googleplus" size="large" class="m-2"></ion-icon>
+        <ion-icon name="logo-whatsapp"size="large" class="m-2"></ion-icon>
+        <ion-icon name="logo-twitter" size="large" class="m-2"></ion-icon>
+        <ion-title></ion-title>
+      </ion-toolbar>
+  </ion-footer>
+  <ion-menu side="start" menuId="first" contentId="content1">
+      <ion-header>
+        <ion-toolbar class="side-menu-header">
+          <ion-title  size="large">Menu</ion-title>
+          <ion-icon name="logo-angular" slot="secondary" class="m-r" size='large'></ion-icon>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list *ngFor="let pages of navigate">
+        <ion-menu-toggle auto-hide="true">
+          <ion-item [routerLink]="pages.url" routerDirection="forward">
+              <ion-icon [name]="pages.icon" slot="start"></ion-icon>
+                  {{pages.title}}
+          </ion-item>
+        </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+</ion-app>

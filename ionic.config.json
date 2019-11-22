@@ -1,0 +1,7 @@
+{
+  "name": "At STPL",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
