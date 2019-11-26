@@ -1,17 +1,61 @@
-<ion-header>
+<ion-header size='small'>
   <ion-toolbar class="products-header">
-    <ion-title size='small' class="add-title">Add New Product</ion-title>
+    <ion-title size='small' class="add-title" >Add New Product</ion-title>
     <ion-button color="primary" size='small' slot="end" class="add-button"
     (click)="router.navigate(['/members/product']);" >
         <ion-icon name="md-arrow-dropleft"></ion-icon> Back 
     </ion-button>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-<form>
-  
-</form>
+  <ion-row>
+    <form [formGroup]="form">
 
-</ion-content>
+      <ion-grid formArrayName="credentials" *ngFor="let creds of form.controls.credentials?.value; let i = index">
+
+          <ion-row [formGroupName]="i">
+            
+            <ion-col size='12'>
+                <ion-item>
+                    <ion-label position="floating">Product Name</ion-label>
+                    <ion-input formControlName="name"></ion-input>
+                    
+                </ion-item>
+            </ion-col>  
+            
+            <ion-col size='6'>
+              <ion-item>
+                  <ion-label position="floating">Quatity</ion-label>
+                  <ion-input formControlName="qty"></ion-input>
+              </ion-item>  
+            </ion-col>  
+
+            <ion-col size='6'>
+              <ion-item>
+                  <ion-label position="floating">Price</ion-label>
+                  <ion-input formControlName="price"></ion-input>
+              </ion-item>
+            </ion-col>  
+            
+          </ion-row>
+      </ion-grid>
+
+    </form>
+  </ion-row>
   
+</ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-row>
+      <ion-col>
+        <ion-fab-button size='small' (click)="addProduct()">
+            <ion-icon name="add" ></ion-icon>
+        </ion-fab-button>  
+      </ion-col>
+      
+      <ion-col>
+        <ion-fab-button size='small' (click)="removeProduct()">
+            <ion-icon name="remove"></ion-icon>
+        </ion-fab-button>
+      </ion-col>
+    </ion-row>
+</ion-fab>
