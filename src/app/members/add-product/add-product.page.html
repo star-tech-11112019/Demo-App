@@ -2,8 +2,12 @@
   <ion-toolbar class="products-header">
     <ion-title size='small' class="add-title" >Add New Product</ion-title>
     <ion-button color="primary" size='small' slot="end" class="add-button"
+    (click)="store()" [disabled]='form.invalid'>
+       Save 
+    </ion-button>
+    <ion-button color="primary" size='small' slot="end" class="add-button"
     (click)="router.navigate(['/members/product']);" >
-        <ion-icon name="md-arrow-dropleft"></ion-icon> Back 
+      Cancel 
     </ion-button>
   </ion-toolbar>
 </ion-header>
@@ -18,23 +22,27 @@
             <ion-col size='12'>
                 <ion-item>
                     <ion-label position="floating">Product Name</ion-label>
-                    <ion-input formControlName="name"></ion-input>
-                    
+                    <ion-input formControlName="name" autocorrect="on" autofocus="on" color="dark" inputmode="text" placeholder="Enter your username" required="true"></ion-input>
                 </ion-item>
+                <ion-label color="danger" *ngIf="c.controls[i].controls && f.credentials.controls[i].controls.name.touched && f.credentials.controls[i].hasError('required', 'name')">Name is required</ion-label>
             </ion-col>  
-            
+            <ion-col size='12'>
+            </ion-col>
             <ion-col size='6'>
               <ion-item>
                   <ion-label position="floating">Quatity</ion-label>
-                  <ion-input formControlName="qty"></ion-input>
+                  <ion-input formControlName="qty" autocorrect="on" autofocus="on" color="dark" inputmode="text" placeholder="Enter your username" required="true"></ion-input>
               </ion-item>  
+              <ion-label color="danger" *ngIf="c.controls[i].controls && f.credentials.controls[i].controls.qty.touched && f.credentials.controls[i].hasError('required', 'qty')">Quatity is required</ion-label>
+
             </ion-col>  
 
             <ion-col size='6'>
               <ion-item>
-                  <ion-label position="floating">Price</ion-label>
-                  <ion-input formControlName="price"></ion-input>
+                  <ion-label position="floating" autofocus="on">Price</ion-label>
+                  <ion-input formControlName="price" autocorrect="on" autofocus="on" color="dark" inputmode="text" placeholder="Enter your username" required="true"></ion-input>
               </ion-item>
+              <ion-label color="danger" *ngIf="c.controls[i].controls && f.credentials.controls[i].controls.price.touched && f.credentials.controls[i].hasError('required', 'price')">Price is required</ion-label>
             </ion-col>  
             
           </ion-row>
