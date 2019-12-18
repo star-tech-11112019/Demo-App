@@ -11,6 +11,14 @@ const routes: Routes = [
   {
     path: 'logout',
     loadChildren: () => import('./logout/logout.module').then( m => m.LogoutPageModule)
+  },
+  {
+    path: 'product',
+    loadChildren: () => import('./product/product.module').then( m => m.ProductPageModule)
+  },
+  {
+    path: 'add-product',
+    loadChildren: () => import('./add-product/add-product.module').then( m => m.AddProductPageModule)
   }
 ];
 

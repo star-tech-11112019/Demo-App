@@ -32,7 +32,7 @@ export class AppComponent {
       this.splashScreen.hide();
       this.authenticationService.authenticationState.subscribe(state => {
         this.authCheck = !!state;
-        this.router.navigate( state ? ['members', 'dashboard'] : ['login'] );
+        this.router.navigate( state ? ['members', 'product'] : ['login'] );
       });
     });
   }
@@ -52,6 +52,13 @@ export class AppComponent {
         url   : "members/gallery",
         icon  : "images"
       },
+      {
+        
+        title : "Products",
+        url   : "members/product",
+        icon  : "md-clipboard"
+      },
+      
       {
         
         title : "Logout",
