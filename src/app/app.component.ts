@@ -32,7 +32,7 @@ export class AppComponent {
       this.splashScreen.hide();
       this.authenticationService.authenticationState.subscribe(state => {
         this.authCheck = !!state;
-        this.router.navigate( state ? ['members', 'product'] : ['login'] );
+        this.router.navigate( state ? ['members', 'brands'] : ['login'] );
       });
     });
   }
@@ -58,9 +58,12 @@ export class AppComponent {
         url   : "members/product",
         icon  : "md-clipboard"
       },
-      
       {
-        
+        title : "Brands",
+        url   :  "members/brands",
+        icon  : "logo-apple"
+      },
+      {
         title : "Logout",
         url   : "members/logout",
         icon  : "log-out"
