@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './../../services/authentication.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastController, LoadingController  } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPage implements OnInit {
 
-  loginForm : FormGroup ;
+  loginForm    : FormGroup ;
+  loaderToShow : any;
 
-  constructor(private authService: AuthenticationService , private formBuilder: FormBuilder) { 
+  constructor( private authService: AuthenticationService , private formBuilder: FormBuilder,
+               public toastController: ToastController , public loadingController: LoadingController
+             ) 
+  { 
     this.loginForm = formBuilder.group({
         username: ['', Validators.required],
         password: ['', Validators.required]
@@ -22,16 +27,76 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-
+    
+    this.showLoader();
     this.authService.authenticate( this.loginForm.value ).subscribe((response) => {
-      console.log(response);
-      
+
+      this.hideLoader();
+
       if ( response.status && response.code == 200) {
       
         this.authService.login( response.data.access_token );
+        this.loginForm.reset()
+        this.presentToast("Login Successful!");
+      
+      }else {
 
+        this.presentToast(response.message);
+        
       }
 
     });
   }
+
+  get f() {
+    return this.loginForm.controls;
+  }
+
+  /**
+   * Show Toast
+   */
+  async presentToast(m) {
+  
+    const toast = await this.toastController.create({
+      message: m,
+      duration: 3000,
+      showCloseButton: true,
+      position: "bottom"
+    });
+    toast.present();
+  
+  }
+
+  /**
+   * Show Loader
+   */
+  showLoader() {
+
+    this.loaderToShow = this.loadingController.create({
+      
+      message: 'Authenticating...',
+      spinner: 'bubbles'
+
+    }).then((res) => {
+     
+      res.present();
+      res.onDidDismiss().then((dis) => {
+      });
+
+    });
+    
+  }
+
+  /**
+   * Hide Loader
+   */
+  hideLoader() {
+
+    setTimeout(() => {
+      this.loadingController.dismiss();
+    }, 1000);
+  
+  }
+
+
 }
