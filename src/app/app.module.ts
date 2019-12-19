@@ -13,6 +13,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule, IonicModule.forRoot(), 
     AppRoutingModule, IonicStorageModule.forRoot(),
     FormsModule, ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,

@@ -23,7 +23,7 @@
         </ion-list>
         <ion-row>
             <ion-col>
-                <ion-button (click)="login()" expand="block" class="m-l">Login</ion-button>
+                <ion-button (click)="login()" expand="block" class="m-l" [disabled]="loginForm.invalid" >Login</ion-button>
             </ion-col>
             <ion-col>
                 <!-- /register -->

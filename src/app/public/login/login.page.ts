@@ -22,6 +22,16 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.authService.login();
+
+    this.authService.authenticate( this.loginForm.value ).subscribe((response) => {
+      console.log(response);
+      
+      if ( response.status && response.code == 200) {
+      
+        this.authService.login( response.data.access_token );
+
+      }
+
+    });
   }
 }
