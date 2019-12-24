@@ -40,11 +40,23 @@ export class BrandService {
 
 
   // Create a new item
-  createBrand(brand): Observable<Brand> {
-   
-    const createUrl = SERVER_URL +'/brand';
+  createBrand(brand): Observable<any> {
+
+    const form = { name : brand };
+    const api = SERVER_URL +'/brand';
     return this.http
-      .post<Brand>( createUrl , JSON.stringify(brand), this.httpOptions)
+      .post<any>( api , form, this.httpOptions )
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  // Brand list
+  getBrand(page = 1): Observable<any> {
+    const api = SERVER_URL +'/brand';
+    return this.http
+      .get<any>( api , this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

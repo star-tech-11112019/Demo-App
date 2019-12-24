@@ -8,34 +8,27 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of dataList">
+      
+      <ion-item>
+        <ion-label>{{ item.name }}</ion-label>
+        <ion-note slot="end" [color]="item.deleted_at ? 'danger' : 'success'">{{ item.deleted_at ? 'Deleted' : '' }}</ion-note>
+      </ion-item>
+  
+      <ion-item-options side="end">
+        <ion-item-option (click)="trash(item)" [color]="!item.deleted_at ? 'danger' : 'primary'">{{ !item.deleted_at ? 'Delete' : 'Restore' }}</ion-item-option>
+      </ion-item-options>
 
-  <div>
+    </ion-item-sliding>
 
-  	<!--
-  	   Embed the ngx-datatable component with following property bindings/values:
-       1. sorttype - allow data to be sorted on multiple columns
-       2. headerHeight - Set height of table header at 50 pixels
-       3. footerHeight - Set height of table footer at 50 pixels
-       4. rowHeight - Set height of table rows at 50 pixels
-       5. rows - Derives the data for the table rows from the component class
-                 property of rows
-       6. columns - Derives the names for the table columns from the component
-                    class property of columns
-       7. columnMode - Use of standard, flex or force - Force value makes columns
-                       equidistant and span the width of the parent container
-       8. limit - the number of records to display before paginating the results
-  	-->
-     <ngx-datatable
-       [sortType]="'multi'"
-       [headerHeight]="50"
-       [footerHeight]="50"
-       [rowHeight]="50"
-       [rows]="rows"
-       [columns]="columns"
-       [columnMode]="'force'"
-       [limit]="10">
-     </ngx-datatable>
-  </div>
-
+  </ion-list>
+ 
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

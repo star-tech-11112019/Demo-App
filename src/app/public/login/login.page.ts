@@ -44,8 +44,14 @@ export class LoginPage implements OnInit {
         this.presentToast(response.message);
         
       }
-
+    
+    }, err => {
+      setTimeout( () => {
+          this.presentToast("Something went wrong! Please check Internet Connectivity. Thanks!");
+          this.hideLoader()
+      }, 8000);
     });
+
   }
 
   get f() {
